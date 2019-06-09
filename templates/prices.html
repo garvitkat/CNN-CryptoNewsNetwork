@@ -1,0 +1,51 @@
+ {% extends 'base.html' %}
+ {% block content %}
+    {% if notfound %}
+
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                <h1 class="display-4">{{key}}</h1>
+                <p class="lead">
+                    <br>
+                    {{notfound}}
+                    <br>
+                </p>
+                </div>
+        </div>    
+
+    {% else %}
+        {% if crypto.Response %}
+            <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                    <h1 class="display-4">{{key}}</h1>
+                    <p class="lead">
+                        <br>
+                        Sorry, This symbol does not exist.
+                        <br>
+                    </p>
+                    </div>
+            </div>    
+        
+        {% else %}
+            {% for key,value in crypto.DISPLAY.items %}
+                <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                        <h1 class="display-4">{{key}}</h1>
+                        <p class="lead">
+                            <br>
+                                <strong>Name</strong>: {{key}}<br>
+                                <strong>Price</strong>: {{value.USD.PRICE}}<br>
+                                <strong>Day High</strong>: {{value.USD.HIGHDAY}}<br>
+                                <strong>Day Low</strong>: {{value.USD.LOWDAY}}<br>
+                                <strong>Market Cap</strong>: {{value.USD.MKTCAP}}<br>
+                                <br>
+                        </p>
+                        </div>
+                </div>
+                {% endfor %}
+        {% endif %}
+  
+    
+    {% endif %}
+
+ {% endblock %}

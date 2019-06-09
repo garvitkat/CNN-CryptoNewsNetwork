@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+
+
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Hi, I'm Garvit!</h1>
+      <p class="lead text-muted">I am learning Django, this is fun.</p>
+<a href="mailto:garvitvanshkataria@gmail.com?subject=feedback" class="btn btn-primary my-2">Email</a>
+
+      </p>
+    </div>
+  </section>
+
+
+  <table class="table table-striped table-bordered table-hover">
+      <thread>
+          <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">24 Hour High</th>
+              <th scope="col">24 Hour Low</th>
+              <th scope="col">Market Cap</th>
+          </tr>
+      </thread>
+      <tbody>
+    {% for key,value in price.DISPLAY.items %}
+        <tr>
+            <td>{{key}}</td>
+            <td>{{value.USD.PRICE}}</td>
+            <td>{{value.USD.HIGHDAY}}</td>
+            <td>{{value.USD.LOWDAY}}</td>
+            <td>{{value.USD.MKTCAP}}</td>
+        </tr>  
+      
+     {% endfor %} 
+        </tbody>
+  </table>
+
+
+  <div class="card-columns">
+    {% for x in api.Data %}
+    <div class="card">
+    
+      <img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ x.title }}</h5>
+        <p class="card-text">{{x.body}}</p> 
+    </div>
+    
+    </div>
+    {% endfor %} 
+  </div>
+  
+  
+
+  <!-- <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% for x in api.Data %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow">
+            <img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source }}" />
+            <div class="card-body">
+              <h5 class="card-title">{{ x.title }}</h5>
+            <p class="card-text">{{x.body}}</p>
+            <a href="{{x.url}}" class="btn btn-secondary">Read More...</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div> -->
+
+</main>
+
+<footer class="text-muted">
+        <div class="container">
+          <p class="float-right">
+            <a href="#">Back to top</a>
+          </p>
+          <p>&copy; Garvit Kataria</p>
+        </div>
+      </footer>
+{% endblock %}
